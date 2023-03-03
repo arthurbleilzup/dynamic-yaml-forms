@@ -1,0 +1,95 @@
+# yaml-language-server: $schema=./plugin-schema.json
+
+stkApiVersion: stkframework.stackspot.com/v0.1
+kind: app-plugin
+metadata:
+  name: microservice-springboot
+  display-name: Microservice Springboot
+  description: Microservice Java Springboot for ITI applications.
+  version: 1.0.0
+  owner: iti/foundation-team
+
+spec:
+  requires:
+    - connection-interface: ecs-task-conn
+
+  inputs:
+    - label: Qual linguagem deseja usar?
+      type: select
+      name: language
+      required: true
+      items:
+        - Java
+        - Kotlin
+  
+    - label: Qual versão do Java deseja usar?
+      type: select
+      name: java_version
+      required: true
+      items:
+        - "11"
+        - "17"
+      condition:
+        variable: language
+        operator: "=="
+        value: Java
+        
+    - label: Qual versão do XPTO?
+      type: select
+      name: java_version_XPTO
+      required: true
+      items:
+        - "11"
+        - "17"
+      condition:
+        variable: java_version
+        operator: "=="
+        value: Java
+        
+    - label: Qual versão do Kotlin deseja usar?
+      type: select
+      name: kotlin_version
+      required: true
+      items:
+        - 1.6
+        - 1.7
+      condition:
+        variable: language
+        operator: "=="
+        value: Kotlin
+      
+    - label: Project Name
+      type: text
+      name: project-name
+      required: true
+
+    - label: Package Name
+      type: text
+      name: package-name
+      required: true
+      requirements:
+        pattern: '^(@[a-z0-9-~][a-z0-9-._~]*\/)?[a-z0-9-~][a-z0-9-._~]*$'
+        message: 'The package name should be an entire text. Sample: "my-custom-name"'
+
+  envs:
+    - label: Definir variáveis de ambiente
+      type: bool
+      name: define-env-vars      
+    
+    - label: Connection Pool
+      type: text
+      name: connection-pool
+      required: true
+      condition:
+        variable: define-env-vars
+        operator: "=="
+        value: true
+      
+    - label: Https
+      type: text
+      name: https
+      required: true
+      condition:
+        variable: define-env-vars
+        operator: "=="
+        value: true

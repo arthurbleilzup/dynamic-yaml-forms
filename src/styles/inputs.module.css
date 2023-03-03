@@ -1,0 +1,40 @@
+.formField {
+  display: flex;
+  flex-direction: column;  
+}
+
+.formFieldCheck {
+  display: row;
+  align-items: center;
+  margin: 0 0 16px 0;
+}
+
+.formField.hasError input[type=text], .formField.hasError select {
+  color: red;
+  border-color: red;
+  margin: 4px 0;
+}
+
+.formField.hasError .errorMessage {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  color: red;
+  margin: 0 0 8px 0;
+}
+
+.formFieldCheck input[type=checkbox] {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0 0 0 8px;
+}
+
+.formField label, .formFieldCheck label {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 14px;
+  color: #212121;
+}
+
+.formField input[type=text], .formField select {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 4px 0 12px 0;
+  padding: 4px 8px;
+}
