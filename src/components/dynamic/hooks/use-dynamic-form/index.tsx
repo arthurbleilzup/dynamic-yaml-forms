@@ -1,11 +1,20 @@
 import { YamlInput } from '@/types/yaml-input'
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import { DynamicComponentHTMLType } from '../../types'
 import { StackSpotDynamicForm } from './types'
 
 export interface DynamicFormProps {
   inputs: YamlInput[]
 }
+
+const getInitialFields = (inputs: YamlInput[]): StackSpotDynamicForm.Field[] => (
+  inputs.map(input => ({
+    ...input,
+    isTouched: false,
+    visible: !input.condition,
+    value: getDefaultValue(input.type),
+  }))
+)
 
 const getDefaultValue = (type: YamlInput.Type) => YamlInput.defaultValues[type]
 
@@ -37,16 +46,10 @@ const validateField = (field: StackSpotDynamicForm.Field) => {
 const isFormValid = (fields: StackSpotDynamicForm.Field[]): boolean => (!fields.filter(f => f.visible).some(f => f.hasError))
 
 export const useDynamicForm = ({ inputs }: DynamicFormProps): StackSpotDynamicForm => {
+  const initialFields = getInitialFields(inputs)
   const [isValid, setIsValid] = useState<boolean>(false)
-  const [fields, setFields] = useState<StackSpotDynamicForm.Field[]>(
-    inputs.map(input => ({
-      ...input,
-      isTouched: false,
-      visible: !input.condition,
-      value: getDefaultValue(input.type),
-    }))
-  )
-
+  const [fields, setFields] = useState<StackSpotDynamicForm.Field[]>(initialFields)  
+  
   const doChangesLifecycle = (changedFields: StackSpotDynamicForm.Field[], source: string, newValue: any) => {
     triggerConditions(changedFields, source, newValue)
     setFields(changedFields)
@@ -72,7 +75,7 @@ export const useDynamicForm = ({ inputs }: DynamicFormProps): StackSpotDynamicFo
     setIsValid(isFormValid(fields))
   }
 
-  const submit = (callback: () => void) => (event: Event) => {
+  const submit: StackSpotDynamicForm.Submit = (callback: () => void) => (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
     callback()
   }

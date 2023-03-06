@@ -1,5 +1,5 @@
 import { YamlInput } from '@/types/yaml-input'
-import { ChangeEvent } from 'react'
+import { ChangeEvent, FormEventHandler } from 'react'
 import { DynamicComponentHTMLType } from '../../types'
 
 export interface StackSpotDynamicForm {
@@ -13,7 +13,7 @@ export interface StackSpotDynamicForm {
 
 export namespace StackSpotDynamicForm {
   export type InputChange = (event: ChangeEvent<DynamicComponentHTMLType>) => void
-  export type Submit = (callback: () => void) => (event: Event) => void
+  export type Submit = (callback: () => void) => FormEventHandler<HTMLFormElement>
 
   export interface Field extends YamlInput {
     visible: boolean
