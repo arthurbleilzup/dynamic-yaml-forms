@@ -1,4 +1,4 @@
-import { DynamicComponent } from '../types'
+import { DynamicComponent } from '../../types'
 
 export const DynamicBool: DynamicComponent<void> = ({ name, placeholder, onChange }) => {
   return (

@@ -1,7 +1,7 @@
-import { StackSpotDynamicForm } from '@/components/dynamic/hooks/use-dynamic-form/types'
+import { StackSpotDynamicForm } from '@/components/raw-dynamic-form/hooks/use-dynamic-form'
 import styles from '@/styles/inputs.module.css'
 import { FC } from 'react'
-import { componentsMap } from './components/map'
+import { componentsMap } from './inputs/map'
 
 interface DynamicInputComponentProps extends StackSpotDynamicForm.Field {
 }

@@ -1,6 +1,6 @@
 import { FC } from 'react'
-import { useDynamicForm, DynamicFormProps } from '@/components/dynamic/hooks/use-dynamic-form'
-import { DynamicInputComponent } from './input'
+import { useDynamicForm, DynamicFormProps } from '@/components/raw-dynamic-form/hooks/use-dynamic-form'
+import { DynamicInputComponent } from './components/dynamic-input'
 import styles from '@/styles/form.module.css'
 
 export interface DynamicFormComponentProps extends DynamicFormProps {

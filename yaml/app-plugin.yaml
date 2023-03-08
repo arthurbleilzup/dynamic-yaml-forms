@@ -42,7 +42,7 @@ spec:
         - "11"
         - "17"
       condition:
-        variable: java_version
+        variable: language
         operator: "=="
         value: Java
         

@@ -1,6 +1,6 @@
 import { YamlInput } from '@/types/yaml-input'
 import { FC } from 'react'
-import { StackSpotDynamicForm } from './hooks/use-dynamic-form/types'
+import { StackSpotDynamicForm } from './hooks/use-dynamic-form'
 
 export type DynamicComponentHTMLType = HTMLInputElement | HTMLSelectElement
 

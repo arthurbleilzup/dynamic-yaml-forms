@@ -1,4 +1,4 @@
-import { DynamicComponent } from '../types'
+import { DynamicComponent } from '../../types'
 
 interface DynamicSelectProps {
   items: string[]
